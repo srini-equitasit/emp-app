@@ -35,7 +35,7 @@ pipeline {
     stage ('Deploy containers') {
       steps {
 
-        sh "docker-compose up"
+        sh "docker-compose --detach"
       }
     }
 
