@@ -25,6 +25,14 @@ pipeline {
    stage('stop all the containers') {
       steps {
       	script{
+      	 sh "docker-compose stop"
+      	}
+      }
+    }
+
+   stage('remove all the containers') {
+      steps {
+      	script{
       	 sh "docker-compose down"
       	}
       }
