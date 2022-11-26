@@ -1,27 +1,5 @@
 version: "3.7"
 services:
-  emp-micro-service:
-    depends_on:
-      - emp-app-db
-    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:emp-micro-service
-    environment:
-      - dbUrl=jdbc:mysql://emp-app-db:3306/bank1?createDatabaseIfNotExist=true
-    ports:
-      - 8081:8081
-    networks:
-      - emp-app-network
-
-  emp-ui-app-service:
-    depends_on:
-      - emp-app-db
-    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:emp-ui-app
-    environment:
-      - empMgmtApiUrl=http://emp-micro-service:8081/emp
-    ports:
-      - 4200:80
-    networks:
-      - emp-app-network
-
   emp-app-db:
     image: mysql
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
@@ -34,6 +12,30 @@ services:
       MYSQL_ROOT_PASSWORD: root
     networks:
       - emp-app-network
+
+  emp-micro-service:
+    depends_on:
+      - emp-app-db
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:emp-micro-service
+    command: ["sleep", "20s"],
+    environment:
+      - dbUrl=jdbc:mysql://emp-app-db:3306/bank1?createDatabaseIfNotExist=true
+    ports:
+      - 8081:8081
+    networks:
+      - emp-app-network
+
+  emp-ui-app-service:
+    depends_on:
+      - emp-micro-service
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:emp-ui-app
+    environment:
+      - empMgmtApiUrl=http://emp-micro-service:8081/emp
+    ports:
+      - 4200:80
+    networks:
+      - emp-app-network
+
   adminer:
     image: adminer
     restart: always
