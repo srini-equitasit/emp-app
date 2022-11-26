@@ -31,11 +31,11 @@ services:
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:emp-ui-app
     environment:
       - empMgmtApiUrl=http://emp-micro-service:8081/emp
+    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/backend-proxy.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
     ports:
       - 4200:80
     networks:
       - emp-app-network
-    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/backend-proxy.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
   adminer:
     image: adminer
