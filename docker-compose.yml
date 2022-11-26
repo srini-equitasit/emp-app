@@ -18,7 +18,7 @@ services:
     environment:
       - empMgmtApiUrl=http://emp-micro-service:8081/emp
     ports:
-      - 4200:4200
+      - 4200:80
     networks:
       - emp-app-network
 
