@@ -17,13 +17,13 @@ services:
     depends_on:
       - emp-app-db
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:emp-micro-service
-    command: ["sleep", "20s"]
     environment:
       - dbUrl=jdbc:mysql://emp-app-db:3306/bank1?createDatabaseIfNotExist=true
     ports:
       - 8081:8081
     networks:
       - emp-app-network
+    restart: on-failure
 
   emp-ui-app-service:
     depends_on:
