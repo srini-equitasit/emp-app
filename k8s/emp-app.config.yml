@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: empAppConfig
+  name: emp-app-config
 data:
   mysqlDBUrl: jdbc:mysql://mysql-service:3306/hr?createDatabaseIfNotExist=true
   empMgmtApiUrl: http://emp-micro-service:8081/emp

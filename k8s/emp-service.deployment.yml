@@ -23,17 +23,17 @@ spec:
         - name: dbUser
           valueFrom:
             secretKeyRef:
-              name: empAppSecret
+              name: emp-app-secret
               key: db_user
         - name: dbPwd
           valueFrom:
             secretKeyRef: 
-              name: empAppSecret
+              name: emp-app-secret
               key: db_pwd
         - name: dbUrl
           valueFrom: 
             configMapKeyRef: 
-              name: empAppConfig
+              name: emp-app-config
               key: mysqlDBUrl  
 
         resources:

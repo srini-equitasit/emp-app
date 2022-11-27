@@ -21,7 +21,7 @@ spec:
         - name: empMgmtApiUrl
           valueFrom:
             configMapKeyRef: 
-              name: empAppConfig
+              name: emp-app-config
               key: empMgmtApiUrl
         ports:
         - containerPort: 80
