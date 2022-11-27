@@ -19,6 +19,8 @@ services:
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:emp-micro-service
     environment:
       - dbUrl=jdbc:mysql://emp-app-db:3306/bank1?createDatabaseIfNotExist=true
+        dbUser=root
+        dbPwd=root
     ports:
       - 8081:8081
     networks:

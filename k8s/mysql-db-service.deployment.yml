@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-ms-deployment
+  labels:
+    app: mysql-ms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-ms
+  template:
+    metadata:
+      labels:
+        app: mysql-ms
+    spec:
+      containers:
+      - name: mysql-ms
+        image: mysql
+        env: 
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: empAppSecret
+              key: db_pwd
+        ports:
+        - containerPort: 3036
+        resources:
+          limits:
+            memory: 1024Mi
+            cpu: "1"
+          requests:
+            memory: 128Mi
+            cpu: "0.2"        
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  selector:
+    app: mysql-ms
+  ports:
+    - protocol: TCP
+      port: 3036
+      targetPort: 3036
