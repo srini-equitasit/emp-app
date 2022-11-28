@@ -17,3 +17,6 @@ minikube addons enable registry-creds
 
 ##  docker registry url
 https://registry.hub.docker.com
+
+## mysql k8s
+https://dev.to/musolemasu/deploy-a-mysql-database-server-in-kubernetes-static-dpc
