@@ -1,41 +1,73 @@
-apiVersion: apps/v1
-kind: Deployment
+
+apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: mysql-ms-deployment
+  name: mysql-pv-volume
   labels:
-    app: mysql-ms
+    type: local
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mysql-ms
-  template:
-    metadata:
-      labels:
-        app: mysql-ms
-    spec:
-      containers:
-      - name: mysql-ms
-        image: mysql
-        env: 
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom: 
-            secretKeyRef:
-              name: emp-app-secret
-              key: db_pwd
-        ports:
-        - containerPort: 3036       
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
+  name: mysql
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
 spec:
   selector:
-    app: mysql-ms
-  ports:
-    - protocol: TCP
-      port: 3036
-      targetPort: 3036
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        env:
+          # Use secret in real usage
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
