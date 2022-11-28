@@ -54,7 +54,6 @@ spec:
     spec:
       containers:
       - image: mysql
-        # command: ["--default-authentication-plugin=mysql_native_password"]
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
@@ -69,8 +68,11 @@ spec:
           name: mysql
         volumeMounts:
         - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+          mountPath: /etc/mysql/conf.d/default_auth.cnf ## path to mount file
+          subPath: default_auth ## name of config
       volumes:
       - name: mysql-persistent-storage
+        configMap:
+          name: mysql-config ## name of ConfigMap
         persistentVolumeClaim:
           claimName: mysql-pv-claim

@@ -20,3 +20,7 @@ https://registry.hub.docker.com
 
 ## mysql k8s
 https://dev.to/musolemasu/deploy-a-mysql-database-server-in-kubernetes-static-dpc
+
+https://dev.to/yoshiyukikato/tips-to-use-mysql-80-on-kubernetes-m3l
+
+https://www.youtube.com/watch?v=pIPji3_rYPY
