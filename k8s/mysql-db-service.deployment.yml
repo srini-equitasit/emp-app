@@ -32,11 +32,10 @@ metadata:
   name: mysql-service
 spec:
   ports:
-    - protocol: TCP
-      port: 3036
-      targetPort: 3036
+  - port: 3306
   selector:
     app: mysql
+  clusterIP: None
 ---
 
 apiVersion: apps/v1
