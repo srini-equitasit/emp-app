@@ -53,16 +53,16 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: mysql:5.7
-          args: 
-            - "--ignore-db-dir=lost+found" # Workaround for https://github.com/docker-library/mysql/issues/186      
+      - image: mysql:5.6
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom: 
             secretKeyRef: 
               name: emp-app-secret
-              key: db_pwd       
+              key: db_pwd
+        - name: MYSQL_DATABASE
+          value: hr                     
         ports:
         - containerPort: 3306
           name: mysql
