@@ -74,5 +74,5 @@ spec:
       - name: mysql-persistent-storage
         configMap:
           name: mysql-config ## name of ConfigMap
-        persistentVolumeClaim:
-          claimName: mysql-pv-claim
+        # persistentVolumeClaim:
+        #   claimName: mysql-pv-claim
