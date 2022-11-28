@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mysql-ms
-        image: mysql
+        image: mysql:5.6
         env: 
         - name: MYSQL_ROOT_PASSWORD
           valueFrom: 
@@ -24,14 +24,7 @@ spec:
               name: emp-app-secret
               key: db_pwd
         ports:
-        - containerPort: 3036
-        resources:
-          limits:
-            memory: 1024Mi
-            cpu: "1"
-          requests:
-            memory: 128Mi
-            cpu: "0.2"        
+        - containerPort: 3036       
 
 ---
 
