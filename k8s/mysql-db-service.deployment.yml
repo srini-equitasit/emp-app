@@ -53,16 +53,14 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: mysql
+      - image: mysql:8.0
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom: 
             secretKeyRef: 
               name: emp-app-secret
-              key: db_pwd
-        - name: MYSQL_DATABASE
-          value: hr                     
+              key: db_pwd                    
         ports:
         - containerPort: 3306
           name: mysql
