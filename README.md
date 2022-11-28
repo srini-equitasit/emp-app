@@ -24,3 +24,6 @@ https://dev.to/musolemasu/deploy-a-mysql-database-server-in-kubernetes-static-dp
 https://dev.to/yoshiyukikato/tips-to-use-mysql-80-on-kubernetes-m3l
 
 https://www.youtube.com/watch?v=pIPji3_rYPY
+
+## connect k8s mysql
+kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql-service -p root
