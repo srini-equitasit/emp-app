@@ -31,11 +31,11 @@ metadata:
   name: mysql-service
 spec:
   ports:
-  - protocol: TCP
-    port: 3306
+  - port: 3306
     targetPort: 3306
   selector:
     app: mysql
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -56,12 +56,11 @@ spec:
       - image: mysql:5.6
         name: mysql
         env:
-          # Use secret in real usage
         - name: MYSQL_ROOT_PASSWORD
           valueFrom: 
             secretKeyRef: 
               name: emp-app-secret
-              key: db_pwd            
+              key: db_pwd       
         ports:
         - containerPort: 3306
           name: mysql
