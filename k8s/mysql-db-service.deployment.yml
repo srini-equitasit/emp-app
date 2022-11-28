@@ -59,8 +59,8 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom: 
             secretKeyRef: 
-              name: emp-app-secret
-              key: db_pwd                    
+              name: mysql-pass
+              key: password                    
         ports:
         - containerPort: 3306
           name: mysql
