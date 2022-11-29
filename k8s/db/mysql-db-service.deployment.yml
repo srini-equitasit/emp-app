@@ -60,7 +60,7 @@ spec:
           valueFrom: 
             secretKeyRef: 
               name: emp-app-secret
-              key: password                    
+              key: db_pwd                    
         ports:
         - containerPort: 3306
           name: mysql
