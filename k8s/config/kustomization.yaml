@@ -1,5 +1,0 @@
-secretGenerator:
-- name: emp-app-secret
-  literals:
-  - db_user=root
-  - db_pwd=root
