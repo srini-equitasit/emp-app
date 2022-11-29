@@ -8,23 +8,23 @@ aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --usern
 
 echo 'clean up existing  pods and services'
 
-kubectl delete -f emp-app.secret.config.yml
+kubectl delete -f ../config/emp-app.secret.config.yml
 
-kubectl delete -f emp-app.config.yml
+kubectl delete -f ../config/emp-app.config.yml
 
-kubectl delete -f mysql-db-service.deployment.yml
+kubectl delete -f ../db/mysql-db-service.deployment.yml
 
-kubectl delete -f emp-service.deployment.yml
+kubectl delete -f ../emp-service.deployment.yml
 
-kubectl delete -f emp-ui-app-service.deployment.yml
+kubectl delete -f ../emp-ui-app-service.deployment.yml
 
 echo 'applying pods and services existing  pods'
 
-kubectl apply -f emp-app.secret.config.yml
+kubectl apply -f ../config/emp-app.secret.config.yml
 
-kubectl apply -f emp-app.config.yml
+kubectl apply -f ../config/emp-app.config.yml
 
-kubectl apply -f mysql-db-service.deployment.yml
+kubectl apply -f ../db/mysql-db-service.deployment.yml
 
 kubectl apply -f emp-service.deployment.yml
 
