@@ -7,13 +7,13 @@ metadata:
 spec:
   containers:
     - name: mysql
-      image: mysql:5.7
+      image: mysql/mysql-server:5.7
       volumeMounts:
         - name: mysql-etc
           mountPath: /etc/mysql
       env:
         - name: MYSQL_ROOT_PASSWORD
-          value: root
+          value: r00tme
   volumes:
     - name: mysql-etc
       hostPath:
