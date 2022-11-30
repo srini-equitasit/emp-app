@@ -27,3 +27,10 @@ https://www.youtube.com/watch?v=pIPji3_rYPY
 
 ## connect k8s mysql
 kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql-service -p root
+
+## login to shell
+kubectl exec --stdin --tty mysql-546747ff76-7hm7h -- /bin/bash
+
+## kubernates cheet sheet
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
