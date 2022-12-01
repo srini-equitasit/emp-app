@@ -51,7 +51,7 @@ kind: Service
 metadata:  
   name: emp-micro-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: emp-micro
   ports:
