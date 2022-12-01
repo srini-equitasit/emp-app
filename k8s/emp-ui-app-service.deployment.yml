@@ -45,6 +45,6 @@ spec:
     app: emp-ui-ms
   ports:
     - protocol: TCP
-      nodePort: 30100
+      nodePort: 30101
       port: 4200
       targetPort: 80
