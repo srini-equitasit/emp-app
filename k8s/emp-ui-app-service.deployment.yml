@@ -38,9 +38,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: emp-ui-app-service
-spec:
   type: NodePort
+  name: emp-ui-app-service
+spec:  
   selector:
     app: emp-ui-ms
   ports:
