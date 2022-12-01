@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: emp-app-config
 data:
-  mysqlDBUrl: jdbc:mysql://mysql-service:3306/hr?createDatabaseIfNotExist=true
+  mysqlDBUrl: jdbc:mysql://mysql:3306/hr?createDatabaseIfNotExist=true
   empMgmtApiUrl: http://emp-micro-service:8081/emp
   dbName: hr
