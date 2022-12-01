@@ -5,4 +5,4 @@ metadata:
 data:
   mysqlDBUrl: jdbc:mysql://mysql-service:3306/hr?createDatabaseIfNotExist=true
   empMgmtApiUrl: http://emp-micro-service:8081/emp
-  mysqlDB: hr
+  dbName: hr
