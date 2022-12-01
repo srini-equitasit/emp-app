@@ -1,4 +1,4 @@
-echo 'clean up existing  pods and services'
+echo 'clean up existing  pods and services '
 
 kubectl delete -f ../emp-ui-app-service.deployment.yml
 
