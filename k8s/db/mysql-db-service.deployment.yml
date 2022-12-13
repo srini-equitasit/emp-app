@@ -51,7 +51,13 @@ spec:
                 configMapKeyRef :
                   name : emp-app-config
                   key :  dbName
-
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 128Mi
+              cpu: "0.2" 
 
           ports:
             - containerPort: 3306
